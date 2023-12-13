@@ -34,22 +34,39 @@ export const VideoPlayerComponent = () =>
     
     return(<>
         <div style={{display: 'flex' , justifyContent: 'center' , marginTop: '10px'}}>
-        <div style={{height: '400px' , width:'66.66667%'}}>
-            <MediaPlayer
-                title={videoTitle}
-                src ={videoLink}
-                >
-                <MediaProvider>
-                {textTracks.map((track ) => (
-                    <Track {...track} key={track.src} />
-                ))}
-                </MediaProvider>
-                <DefaultVideoLayout
-                thumbnails="https://image.mux.com/VZtzUzGRv02OhRnZCxcNg49OilvolTqdnFLEqBsTwaxU/storyboard.vtt"
-                icons={defaultLayoutIcons}
-                />
-            </MediaPlayer>
-        </div>
+            <div style={{height: '400px' , width:'66.66667%'}}>
+                <div >
+                    <MediaPlayer
+                        title={videoTitle}
+                        src ={videoLink}
+                        >
+                        <MediaProvider>
+                        {textTracks.map((track ) => (
+                            <Track {...track} key={track.src} />
+                        ))}
+                        </MediaProvider>
+                        <DefaultVideoLayout
+                        thumbnails="https://image.mux.com/VZtzUzGRv02OhRnZCxcNg49OilvolTqdnFLEqBsTwaxU/storyboard.vtt"
+                        icons={defaultLayoutIcons}
+                        />
+                    </MediaPlayer>
+                </div>
+                <br />
+                <div className='flex justify-end'>
+                    <button
+                        type="submit"
+                        className= "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 "
+                        onClick={() =>
+                        {
+                            localStorage.removeItem('videoLink');
+                            localStorage.removeItem('videoTitle');
+                            router.push("/");
+                        }}
+                    >
+                        Go Back
+                    </button>
+                </div>
+            </div>
         </div>
     </>)
 }

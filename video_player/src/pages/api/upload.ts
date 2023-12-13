@@ -1,6 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import fs from 'fs';
-import path from 'path';
 
 type Data = {
   message?: string,
@@ -17,7 +16,7 @@ export default function handler(
     try
     {
       const fileBuffer = req.body;
-      const fileContent = fileBuffer.toString();
+      let fileContent = fileBuffer.toString();
       fs.writeFileSync("./public/chapters.vtt", fileContent, 'utf-8');
       res.status(200).json({ message: 'Chapters added successfully' });
     }catch(error : any)

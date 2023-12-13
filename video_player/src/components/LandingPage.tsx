@@ -35,22 +35,26 @@ export const LandingPage = () =>
     try
     {
       
-      if(videoFile !== null)
+      let file = videoFile;
+      if(file === null)
       {
+        file = new File([] , "Empty File");
+      }
+     
         const formData = new FormData();
-        formData.append('file', videoFile);
+        formData.append('file', file);
         const response = await axios.post('/api/upload', formData);
+
 
         if(response.status === 200)
         {
-          localStorage.setItem("videoTitle" , videoTitle);
-          localStorage.setItem("videoLink" , videoLink);
-          router.push("/videoplayer");
+          // localStorage.setItem("videoTitle" , videoTitle);
+          // localStorage.setItem("videoLink" , videoLink);
+          // router.push("/videoplayer");
         }else
         {
           console.log(response.data.error);
         }
-      }
         
     }catch(error : any)
     {
@@ -104,17 +108,18 @@ export const LandingPage = () =>
                   name="videoFile"
                   id="videoFile"
                   accept=".vtt"
-                  required
                   onChange={handleVideoFileChange}
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
               </div>
+              <div className='flex justify-center'>
               <button
                 type="submit"
-                className="w-full text-blue bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                className= "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 "
               >
-                Play Video
+                Open Video
               </button>
+              </div>
             </form>
           </div>
         </div>

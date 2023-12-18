@@ -43,14 +43,21 @@ export const LandingPage = () =>
      
         const formData = new FormData();
         formData.append('file', file);
-        const response = await axios.post('/api/upload', formData);
+
+
+        const response = await axios.post('/api/upload', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+        
 
 
         if(response.status === 200)
         {
-          // localStorage.setItem("videoTitle" , videoTitle);
-          // localStorage.setItem("videoLink" , videoLink);
-          // router.push("/videoplayer");
+          localStorage.setItem("videoTitle" , videoTitle);
+          localStorage.setItem("videoLink" , videoLink);
+          router.push("/videoplayer");
         }else
         {
           console.log(response.data.error);
@@ -110,6 +117,7 @@ export const LandingPage = () =>
                   accept=".vtt"
                   onChange={handleVideoFileChange}
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  multiple={false}
                 />
               </div>
               <div className='flex justify-center'>

@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import  { useRouter } from 'next/router';
 import axios from 'axios';
+import LoveIcon from './LoveIcon';
 
 export const LandingPage = () =>
 {
@@ -45,7 +46,7 @@ export const LandingPage = () =>
         formData.append('file', file);
 
 
-        const response = await axios.post('/api/upload', formData, {
+        const response = await axios.post('/player/api/upload', formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
@@ -83,7 +84,7 @@ export const LandingPage = () =>
             </h1>
             <form className="space-y-4 md:space-y-6" onSubmit={handleFormSubmit}>
             <div>
-                <label htmlFor="videoTitle" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Video Link</label>
+                <label htmlFor="videoTitle" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Video Title</label>
                 <input
                   type="text"
                   name="videoTitle"
@@ -131,7 +132,10 @@ export const LandingPage = () =>
             </form>
           </div>
         </div>
+        <br />
+        <div>Designed with <LoveIcon/> in India!</div>
       </div>
+      
     </section>
     </div>
   );

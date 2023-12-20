@@ -1,7 +1,7 @@
 export const textTracks = [
     // Chapters
     {
-      src: '../chapters.vtt',
+      src: '../player/chapters.vtt',
       kind: 'chapters',
       language: 'en-US',
       default: true,

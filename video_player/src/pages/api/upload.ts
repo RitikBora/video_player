@@ -24,7 +24,7 @@ export default async function handler(
  {
   try {
     await new Promise<void>((resolve, reject) => {
-      upload.single('file')(req, res, (err) => {
+      upload.single('file')(req, res, (err : any) => {
         if (err) {
           reject(err);
         } else {
